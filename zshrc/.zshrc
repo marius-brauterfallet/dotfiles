@@ -6,6 +6,8 @@ done
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
+setopt SHARE_HISTORY
+setopt INC_APPEND_HISTORY
 bindkey -v
 
 setopt HIST_IGNORE_ALL_DUPS
@@ -25,3 +27,17 @@ parse_git_branch() {
 }
 
 PROMPT='%F{green}%n@%m%f %F{blue}%~%f$(parse_git_branch) %# '
+
+# Change cursor shape for different vi modes.
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q'
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'
+  fi
+}
+zle -N zle-keymap-select
