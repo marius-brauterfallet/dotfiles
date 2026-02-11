@@ -41,3 +41,5 @@ function zle-keymap-select {
   fi
 }
 zle -N zle-keymap-select
+
+setopt globdots
