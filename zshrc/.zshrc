@@ -9,6 +9,7 @@ SAVEHIST=1000
 setopt SHARE_HISTORY
 setopt INC_APPEND_HISTORY
 bindkey -v
+KEYTIMEOUT=5
 
 setopt HIST_IGNORE_ALL_DUPS
 setopt CORRECT
@@ -41,6 +42,14 @@ function zle-keymap-select {
   fi
 }
 zle -N zle-keymap-select
+
+# Use beam shape cursor on startup.
+echo -ne '\e[5 q'
+
+zle-line-init() {
+  echo -ne '\e[5 q'
+}
+zle -N zle-line-init
 
 setopt globdots
 
