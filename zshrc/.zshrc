@@ -43,3 +43,8 @@ function zle-keymap-select {
 zle -N zle-keymap-select
 
 setopt globdots
+
+
+if [ -d "/home/linuxbrew/.linuxbrew" ]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
+fi
