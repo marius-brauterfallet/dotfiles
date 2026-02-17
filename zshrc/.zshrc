@@ -3,7 +3,7 @@ for file in ~/.zshrc.d/*.zsh; do
   source "$file"
 done 
 
-HISTFILE=~/.zsh_history
+HISTFILE=~/.zshrc.d/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
 setopt SHARE_HISTORY
