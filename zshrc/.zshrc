@@ -53,6 +53,7 @@ zle -N zle-line-init
 
 setopt globdots
 
+export EDITOR=nvim
 
 if [ -d "/home/linuxbrew/.linuxbrew" ]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
