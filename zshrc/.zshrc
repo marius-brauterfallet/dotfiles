@@ -58,3 +58,5 @@ export EDITOR=nvim
 if [ -d "/home/linuxbrew/.linuxbrew" ]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
 fi
+
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
