@@ -24,10 +24,15 @@ parse_git_branch() {
   local branch
   # branch=$((git branch 2>/dev/null) | grep '*' | sed 's/* //')
   branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
-  [[ -n $branch ]] && echo " $branch"
+  [[ -n $branch ]] && echo " \uf418 $branch"
 }
 
-PROMPT='%F{green}%n@%m%f %F{blue}%~%f$(parse_git_branch) %# '
+PROMPT='
+%F{green}%n@%m%f %F{blue}%~%f$(parse_git_branch)
+'$'\ue602 '
+
+RPROMPT='%F{yellow}%D{%d/%m/%Y} %T%f'
+
 
 # Change cursor shape for different vi modes.
 function zle-keymap-select {
@@ -60,3 +65,4 @@ if [ -d "/home/linuxbrew/.linuxbrew" ]; then
 fi
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
+export PATH="$HOME/.local/bin:$PATH"
