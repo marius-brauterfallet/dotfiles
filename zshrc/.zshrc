@@ -1,11 +1,14 @@
 # Source all .zsh files in ~/.zshrc.d
 for file in ~/.zshrc.d/*.zsh; do
   source "$file"
-done 
+done
 
 HISTFILE=~/.zshrc.d/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
+setopt HIST_IGNORE_DUPS  # don't save duplicate consecutive commands
+setopt HIST_IGNORE_SPACE # don't save commands prefixed with a space (useful for sensitive commands)
+setopt HIST_VERIFY       # show the expanded history command before running it
 setopt SHARE_HISTORY
 setopt INC_APPEND_HISTORY
 bindkey -v
