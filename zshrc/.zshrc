@@ -27,12 +27,19 @@ parse_git_branch() {
   [[ -n $branch ]] && echo " \uf418 $branch"
 }
 
+PRE_PROMPT_MARKER=''$'\u276f'
 PROMPT='
 %F{green}%n@%m%f %F{blue}%~%f$(parse_git_branch)
-'$'\ue602 '
+${PRE_PROMPT_MARKER} '
 
 RPROMPT='%F{yellow}%D{%d/%m/%Y} %T%f'
 
+PROMPT_LINES=3
+
+preexec() {
+  printf '\033[%dA\033[J' $((PROMPT_LINES))
+  printf "${PRE_PROMPT_MARKER} %s\n" "$1"
+}
 
 # Change cursor shape for different vi modes.
 function zle-keymap-select {
