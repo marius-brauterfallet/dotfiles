@@ -759,6 +759,8 @@ do
     'json',
     'yaml',
     'markdown',
+    'html',
+    'css'
   }
 
   local formatters_by_ft = { kotlin = { 'ktfmt' } }
