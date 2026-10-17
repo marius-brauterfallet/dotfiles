@@ -11,3 +11,5 @@ alias tra="transmission-remote -a"
 alias trl="transmission-remote -l"
 
 alias duh="du -h -d 1"
+
+alias tm="tmux new-session -A -s main"
