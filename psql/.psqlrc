@@ -1,0 +1,40 @@
+-- Keep startup quiet while the settings load
+\set QUIET 1
+
+-- Show query run time after each query
+\timing on
+
+-- Show NULL explicitly instead of as an empty string
+\pset null '∅'
+
+-- Switch to expanded (vertical) output when rows are too wide for the terminal
+\x auto
+
+-- Nicer table borders
+\pset linestyle unicode
+\pset border 2
+
+-- Separate history file per database
+\set HISTFILE ~/.psql_history-:DBNAME
+\set HISTCONTROL ignoredups
+\set HISTSIZE 10000
+
+-- Tab completion of keywords in uppercase
+\set COMP_KEYWORD_CASE upper
+
+-- Show more detail in error messages
+\set VERBOSITY verbose
+
+-- After an error inside a transaction, roll back only that statement, not the whole transaction (interactive sessions only)
+\set ON_ERROR_ROLLBACK interactive
+
+-- Prompt: time, user@host:port/db, and transaction status
+\set PROMPT1 '%`date +%H:%M:%S` %n@%M:%>/%/%R%x%# '
+\set PROMPT2 '%R%x%# '
+
+-- Saved queries you can run as :name
+\set activity 'SELECT pid, usename, state, now() - query_start AS running_for, left(query, 80) AS query FROM pg_stat_activity WHERE state <> ''idle'' AND pid <> pg_backend_pid() ORDER BY query_start;'
+\set sizes 'SELECT relname, pg_size_pretty(pg_total_relation_size(relid)) AS total FROM pg_catalog.pg_statio_user_tables ORDER BY pg_total_relation_size(relid) DESC LIMIT 20;'
+\set locks 'SELECT pid, locktype, relation::regclass, mode, granted FROM pg_locks WHERE pid <> pg_backend_pid();'
+
+\unset QUIET
